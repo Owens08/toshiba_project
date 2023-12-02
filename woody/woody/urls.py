@@ -3,12 +3,11 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
-from core.views import index, contact, about
+from core.views import about
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', index , name='index'),
+    path('', include('core.urls')),
     path('items/', include('item.urls')),
-    path('contact/', contact , name='contact'),
-    path('about/', about , name='about')
+    path('about/', about , name='about'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
